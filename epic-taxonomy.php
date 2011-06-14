@@ -8,7 +8,7 @@ Author: Andrew Terris, Eric Marden
 Author URI:
 */
 
-
+if ( class_exists('epic_taxonomy') ):
 /**
  *	Epic Taxonomy
  *	@author Andrew Terris <atterris@gmail.com>
@@ -140,4 +140,5 @@ class epic_taxonomy
 		endif;
 	}
 }
+endif;
 ?>

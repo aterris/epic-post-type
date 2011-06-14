@@ -8,7 +8,7 @@ Author: Andrew Terris, Eric Marden
 Author URI: 
 */
 
-
+if ( class_exists('epic_post_type') ):
 /**
  *	Custom Post Type Class
  *	@author Andrew Terris <atterris@gmail.com>
@@ -218,5 +218,5 @@ class epic_post_type
 		return get_posts($args);
 	}
 }
-
+endif;
 ?>

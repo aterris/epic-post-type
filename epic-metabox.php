@@ -8,7 +8,7 @@ Author: Andrew Terris, Eric Marden
 Author URI: 
 */
 
-
+if ( class_exists( 'epic_metabox' ) ):
 /**
  *	Epic Metabox
  *	@author Andrew Terris <atterris@gmail.com>
@@ -16,7 +16,6 @@ Author URI:
  *	
  *	A class to create Custom MetaBoxes on an EPIC scale.
  */
-if ( class_exists( 'epic_metabox' ) ):
 class epic_metabox {
 	protected $_meta_box;
 
