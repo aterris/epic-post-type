@@ -1,7 +1,18 @@
 <?php
+/*
+Plugin Name: Epic Taxonomy
+Plugin URI: https://github.com/aterris/epic-post-type
+Description: A library to create Custom Taxonomies on an EPIC scale.
+Version: 0.1
+Author: Andrew Terris, Eric Marden
+Author URI:
+*/
+
+
 /**
- * 	Epic Taxonomy
+ *	Epic Taxonomy
  *	@author Andrew Terris <atterris@gmail.com>
+ *	@author Eric Marden <wp@xentek.net>
  */
 class epic_taxonomy
 {
@@ -129,5 +140,4 @@ class epic_taxonomy
 		endif;
 	}
 }
-
 ?>

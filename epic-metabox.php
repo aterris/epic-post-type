@@ -1,19 +1,20 @@
 <?php
 /*
-Plugin Name: Epic Metaboxes
-Plugin URI: http://blueprintds.com
-Description: A Plugin to aide in the creation and implementation of Metaboxes
+Plugin Name: Epic Metabox
+Plugin URI: https://github.com/aterris/epic-post-type
+Description: A library to create Custom MetaBoxes on an EPIC scale. Based on Work by Andrew Norcross, Jared Atchison on Custom Metaboxes.
 Version: 0.1
-Author: Andrew Terris, Andrew Norcross, Jared Atchison
-Author URI: http://blueprintds.com 
+Author: Andrew Terris, Eric Marden
+Author URI: 
 */
 
 
 /**
  *	Epic Metabox
- *	@author Andrew T
+ *	@author Andrew Terris <atterris@gmail.com>
+ *	@author Eric Marden <wp@xentek.net>
  *	
- *	Based on work by Andrew Norcross, Jared Atchison on Custom Metaboxes
+ *	A class to create Custom MetaBoxes on an EPIC scale.
  */
 if ( class_exists( 'epic_metabox' ) ):
 class epic_metabox {
