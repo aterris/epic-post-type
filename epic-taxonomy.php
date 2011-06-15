@@ -3,12 +3,12 @@
 Plugin Name: Epic Taxonomy
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom Taxonomies on an EPIC scale.
-Version: 0.2
+Version: 0.3
 Author: Andrew Terris, Eric Marden
 Author URI:
 */
 
-if ( class_exists('epic_taxonomy') ):
+if ( !class_exists('epic_taxonomy') ):
 /**
  *	Epic Taxonomy
  *	@author Andrew Terris <atterris@gmail.com>

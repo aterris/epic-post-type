@@ -3,12 +3,12 @@
 Plugin Name: Epic Metabox
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom MetaBoxes on an EPIC scale. Based on Work by Andrew Norcross, Jared Atchison on Custom Metaboxes.
-Version: 0.3
+Version: 0.4
 Author: Andrew Terris, Eric Marden
 Author URI: 
 */
 
-if ( class_exists( 'epic_metabox' ) ):
+if ( !class_exists( 'epic_metabox' ) ):
 /**
  *	Epic Metabox
  *	@author Andrew Terris <atterris@gmail.com>
@@ -303,7 +303,7 @@ class epic_metabox {
 } // end epic_metabox
 endif;
 
-if ( class_exists('epic_metabox_validate') ):
+if ( !class_exists('epic_metabox_validate') ):
 /**
  * Epic Metabox Validate
  *	
@@ -321,7 +321,7 @@ class epic_metabox_validate
 }
 endif;
 
-if ( function_exists('epic_metabox_scripts') ):
+if ( !function_exists('epic_metabox_scripts') ):
 function epic_metabox_scripts( $hook )
 {
 	if ( $hook == 'post.php' OR $hook == 'post-new.php' OR $hook == 'page-new.php' OR $hook == 'page.php' ):
@@ -338,7 +338,7 @@ function epic_metabox_scripts( $hook )
 add_action( 'admin_enqueue_scripts', 'epic_metabox_scripts',10,1 );
 endif;
 
-if ( function_exists('epic_metabox_editor_init') ):
+if ( !function_exists('epic_metabox_editor_init') ):
 function epic_metabox_editor_init()
 {
   wp_enqueue_script('word-count');
@@ -348,7 +348,7 @@ function epic_metabox_editor_init()
 add_action( 'admin_init', 'epic_metabox_editor_init' );
 endif;
 
-if ( function_exists('epic_metabox_editor_head') ):
+if ( !function_exists('epic_metabox_editor_head') ):
 function epic_metabox_editor_head()
 {
   wp_tiny_mce();
@@ -356,7 +356,7 @@ function epic_metabox_editor_head()
 add_action('admin_head', 'epic_metabox_editor_head');
 endif;
 
-if ( function_exists('epic_metabox_editor_scripts') ):
+if ( !function_exists('epic_metabox_editor_scripts') ):
 function epic_metabox_editor_scripts() { ?>
 		<script type="text/javascript">/* <![CDATA[ */
 		jQuery(function($) {
@@ -375,7 +375,7 @@ function epic_metabox_editor_scripts() { ?>
 add_action('admin_print_footer_scripts','epic_metabox_editor_scripts',99);
 endif;
 
-if ( function_exists('epic_metabox_styles_inline') ):
+if ( !function_exists('epic_metabox_styles_inline') ):
 function epic_metabox_styles_inline()
 { 
 	echo '<link rel="stylesheet" type="text/css" href="' . plugins_url('/includes/metabox-style.css',__FILE__) . '" />';
