@@ -3,7 +3,7 @@
 Plugin Name: Epic Metabox
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom MetaBoxes on an EPIC scale. Based on Work by Andrew Norcross, Jared Atchison on Custom Metaboxes.
-Version: 0.2
+Version: 0.3
 Author: Andrew Terris, Eric Marden
 Author URI: 
 */
