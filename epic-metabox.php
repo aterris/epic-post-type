@@ -139,7 +139,7 @@ class epic_metabox {
 					echo '<p class="epic_metabox_metabox_description">', $field['desc'], '</p>';
 					break;
 				case 'radio':
-					foreach ($field['options'] as $option) {
+					foreach ($field['options'] as $option):
 						$checked = '';
 						if ( $meta == $option['value'] ):
 							$checked = 'checked="checked"';
@@ -272,7 +272,7 @@ class epic_metabox {
 			endif;
 			
 			// validate meta value
-			if ( isset($field['validate_func']) ) {
+			if ( isset($field['validate_func']) ):
 				$ok = call_user_func(array('epic_metabox_validate', $field['validate_func']), $new);
 				if ( $ok === false ): // pass away when meta value is invalid
 					continue;
@@ -319,6 +319,7 @@ class epic_metabox_validate
 		return true;
 	}
 }
+endif;
 
 if ( function_exists('epic_metabox_scripts') ):
 function epic_metabox_scripts( $hook )
@@ -362,15 +363,15 @@ function epic_metabox_editor_scripts() { ?>
 			var i=1;
 			$('.customEditor textarea').each(function(e) {
 				var id = $(this).attr('id');
- 				if (!id) {
+				if (!id) {
 					id = 'epic-editor' + i++;
 					$(this).attr('id',id);
 				}
- 				tinyMCE.execCommand('mceAddControl', false, id);
- 			});
+				tinyMCE.execCommand('mceAddControl', false, id);
+			});
 		});
 	/* ]]> */</script>
-	<?php }
+<?php }
 add_action('admin_print_footer_scripts','epic_metabox_editor_scripts',99);
 endif;
 
