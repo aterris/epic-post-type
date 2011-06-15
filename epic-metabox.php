@@ -3,7 +3,7 @@
 Plugin Name: Epic Metabox
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom MetaBoxes on an EPIC scale. Based on Work by Andrew Norcross, Jared Atchison on Custom Metaboxes.
-Version: 0.4
+Version: 0.5
 Author: Andrew Terris, Eric Marden
 Author URI: 
 */
@@ -41,6 +41,7 @@ class epic_metabox {
 
 		add_action( 'admin_menu', array(&$this, 'add') );
 		add_action( 'save_post', array(&$this, 'save') );
+		return $this;
 	} // end __construct()
 
 	function add_post_enctype()
@@ -179,6 +180,8 @@ class epic_metabox {
 					echo '<div class="epic-editor"><textarea name="', $field['id'], '" id="', $field['id'], '" cols="60" rows="7" style="width:97%">', $meta ? $meta : '', '</textarea></div>';
 					echo '</div>';
 					echo '<p class="epic_metabox_metabox_description">', $field['desc'], '</p>';
+
+					add_action('admin_head', 'epic_metabox_editor_head');
 				break;
 				case 'file_list':
 					echo '<input id="upload_file" type="text" size="36" name="', $field['id'], '" value="" />';
@@ -353,7 +356,6 @@ function epic_metabox_editor_head()
 {
   wp_tiny_mce();
 }
-add_action('admin_head', 'epic_metabox_editor_head');
 endif;
 
 if ( !function_exists('epic_metabox_editor_scripts') ):
@@ -361,7 +363,7 @@ function epic_metabox_editor_scripts() { ?>
 		<script type="text/javascript">/* <![CDATA[ */
 		jQuery(function($) {
 			var i=1;
-			$('.customEditor textarea').each(function(e) {
+			$('.epic-editor textarea').each(function(e) {
 				var id = $(this).attr('id');
 				if (!id) {
 					id = 'epic-editor' + i++;
@@ -378,7 +380,7 @@ endif;
 if ( !function_exists('epic_metabox_styles_inline') ):
 function epic_metabox_styles_inline()
 { 
-	echo '<link rel="stylesheet" type="text/css" href="' . plugins_url('/includes/metabox-style.css',__FILE__) . '" />';
+	echo '<link rel="stylesheet" type="text/css" href="' . plugins_url('/epic-metabox.css',__FILE__) . '" />';
 	// For some reason this script doesn't like to register
 	?>	
 	<style type="text/css">

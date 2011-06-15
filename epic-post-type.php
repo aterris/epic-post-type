@@ -21,7 +21,6 @@ class epic_post_type
 	public $singular_name;
 	public $icon;
 	
-	
 	//Initialize New Custom Post Type
 	function init($args)
 	{	
@@ -57,6 +56,8 @@ class epic_post_type
 		
 		//Manage Rewrite Rules
 		add_action('generate_rewrite_rules',array( &$this, 'rewrite_rules'));
+		
+		return $this;
 	}
 	
 	
