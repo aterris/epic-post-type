@@ -212,7 +212,6 @@ class epic_post_type
 			endif;
 			$rewrite_rules[$regex] = $redirect;
 		endforeach;
-		krumo( $rewrite_rules );
 		return $rewrite_rules + $rules;
 	}
 	
