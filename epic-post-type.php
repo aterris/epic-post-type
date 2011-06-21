@@ -3,7 +3,7 @@
 Plugin Name: Epic Post Type
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom Post Types on an EPIC scale.
-Version: 0.3
+Version: 0.5
 Author: Andrew Terris, Eric Marden
 Author URI: 
 */
@@ -30,6 +30,7 @@ class epic_post_type
 			'singular_name' =>'Custom Post',
 			'slug' => 'custom_post',
 			'icon' => null,
+			'has_archive' => true,
 			'post_args' => array()
 		);
 		
@@ -55,7 +56,7 @@ class epic_post_type
 		add_filter('template_redirect', array( &$this, 'template_redirection') );
 		
 		//Manage Rewrite Rules
-		add_action('generate_rewrite_rules',array( &$this, 'rewrite_rules'));
+		add_filter('rewrite_rules_array',array( &$this, 'rewrite_rules'));
 		
 		return $this;
 	}
@@ -104,7 +105,7 @@ class epic_post_type
 		
 		//Merge Options With Passed Args
 		$args = wp_parse_args($args, $options);
-	    
+
 		//Register Custom Post Type
 		register_post_type( $slug , $args );
 	}
@@ -171,25 +172,33 @@ class epic_post_type
 				include( ABSPATH . 'wp-trackback.php' );
 				return;
 			elseif($wp->query_vars['name']):
-				include ( STYLESHEETPATH . '/single-' . $wp->query_vars['post_type'] . '.php');
+				locate_template( array(
+						'single-' . $wp->query_vars['post_type'] . '.php',
+						'single.php',
+						'index.php'
+					), true);
 				die();
 			endif;
 		elseif( in_array( $wp->request, $post_types ) ):
-			include( STYLESHEETPATH . '/' . $wp->request . '.php');
-			die();
+			locate_template( array(
+					$wp->request . '.php',
+					'archive'-$wp->request . '.php',
+					'archive.php',
+					'index.php'
+				), true);
+			exit;
 		endif;
 	}
 	
 	
 	//Manage Rewrite Rules
-	function rewrite_rules()
+	function rewrite_rules( $rules )
 	{
 		global $wp_rewrite;
 
 		$post_type = $this->slug;
 		$rewrite_rules = $wp_rewrite->generate_rewrite_rules($post_type.'/');
-
-		$rewrite_rules[$post_type.'/?$'] = 'index.php?paged=1';
+		$rewrite_rules[$post_type.'/?$'] = 'index.php?paged=1&post_type=' . $post_type;
 
 		foreach($rewrite_rules as $regex => $redirect):
 			if ( strpos($redirect, 'attachment=') === false ):
@@ -198,13 +207,11 @@ class epic_post_type
 
 			if ( 0 < preg_match_all( '@\$([0-9])@', $redirect, $matches ) ):
 				for($i = 0; $i < count($matches[0]); $i++):
-					$redirect = str_replace($matches[0][$i], '$matches['.$matches[1][$i].']', $redirect);
+					$redirect = str_replace($matches[0][$i], '$matches['.$matches[1][$i].']', $redirect);	
 				endfor;
 			endif;
-
-			$redirect .= '&post_type='.$post_type;
-			$wp_rewrite->add_rule($regex, $redirect, 'top');
 		endforeach;
+		return $rewrite_rules + $rules;
 	}
 	
 	
