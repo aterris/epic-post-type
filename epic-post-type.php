@@ -3,7 +3,7 @@
 Plugin Name: Epic Post Type
 Plugin URI: https://github.com/aterris/epic-post-type
 Description: A library to create Custom Post Types on an EPIC scale.
-Version: 0.5
+Version: 0.6
 Author: Andrew Terris, Eric Marden
 Author URI: 
 */
@@ -199,7 +199,7 @@ class epic_post_type
 		$post_type = $this->slug;
 		$rewrite_rules = $wp_rewrite->generate_rewrite_rules($post_type.'/');
 		$rewrite_rules[$post_type.'/?$'] = 'index.php?paged=1&post_type=' . $post_type;
-
+		$rewrite_rules[$post_type.'/page/(\d*)/?$'] = 'index.php?paged=$matches[1]&post_type=' . $post_type;
 		foreach($rewrite_rules as $regex => $redirect):
 			if ( strpos($redirect, 'attachment=') === false ):
 					$redirect .= '&post_type='.$post_type;
@@ -210,7 +210,9 @@ class epic_post_type
 					$redirect = str_replace($matches[0][$i], '$matches['.$matches[1][$i].']', $redirect);	
 				endfor;
 			endif;
+			$rewrite_rules[$regex] = $redirect;
 		endforeach;
+		krumo( $rewrite_rules );
 		return $rewrite_rules + $rules;
 	}
 	
