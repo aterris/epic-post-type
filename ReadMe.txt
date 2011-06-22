@@ -1,5 +1,5 @@
 === Epic Post Type ===
-Contributors: xenlab
+Contributors: xenlab, aterris
 Donate link: http://j.mp/donate-to-xentek
 Tags: library, post types, custom post types, custom taxonomy, metabox
 Requires at least: 3.0
@@ -10,7 +10,7 @@ A library for the creation of Custom Post Types, Custom Taxonomies, and Custom M
 
 == Description ==
 
-A library for the creation of Custom Post Types, Custom Taxonomies, and Custom MetaBoxes on an EPIC Scale.
+A library for the creation of Custom Post Types, Custom Taxonomies, and Custom MetaBoxes on an EPIC Scale. This plugin is strictly for developers.
 
 == Installation ==
 
@@ -23,7 +23,7 @@ A library for the creation of Custom Post Types, Custom Taxonomies, and Custom M
 
 = WTF? =
 
-If you want to speed up your Custom Post Type workflow, you'll want to use this.
+If you want to speed up your Custom Post Type workflow, you'll want to use this. The code should be self explanatory, but we'll be creating documentaiton for it soon enough my chippies.
 
 == Changelog ==
 
@@ -32,3 +32,6 @@ If you want to speed up your Custom Post Type workflow, you'll want to use this.
 
 = 0.2 =
 * Ready for production use.
+
+= 0.6 =
+* Bug fixes, mostly.
