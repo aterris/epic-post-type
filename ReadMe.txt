@@ -33,5 +33,5 @@ If you want to speed up your Custom Post Type workflow, you'll want to use this.
 = 0.2 =
 * Ready for production use.
 
-= 0.6 =
+= 0.7 =
 * Bug fixes, mostly.
