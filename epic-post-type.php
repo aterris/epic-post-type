@@ -83,7 +83,7 @@ class epic_post_type
 		);
 		
 		//Create Basic Default Options
-		$options = array(
+			$options = array(
 				 	'labels' => $labels,
 					'description' => '',
 					'publicly_queryable' => true,
@@ -93,7 +93,7 @@ class epic_post_type
 					'public' => true,
 					'rewrite' => array('slug'=>$slug),
 					'query_var' => $slug,
-					'supports' => array('title','editor','excerpt','thumbnail'),
+					'supports' => array( 'title', 'editor', 'excerpt', 'custom-fields', 'revisions' ),
 					'register_meta_box_cb' => null,
 					'show_ui' => true,
 					'menu_position' => null,
@@ -102,9 +102,9 @@ class epic_post_type
 					'can_export' => true,
 					'show_in_nav_menus' => true
 		);
-		
+
 		//Merge Options With Passed Args
-		$args = wp_parse_args($args, $options);
+		$args = wp_parse_args($args, $options);	
 
 		//Register Custom Post Type
 		register_post_type( $slug , $args );

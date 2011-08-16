@@ -126,12 +126,13 @@ class epic_taxonomy
 				include( ABSPATH . 'wp-trackback.php' );
 				return;
 			elseif($wp->query_vars['taxonomy']):
-				$inc = STYLESHEETPATH . '/' . $wp->query_vars['taxonomy'] . '/' . $wp->query_vars['term'] . '.php';
-				if ( file_exists( $inc ) ):
-					include( $inc );
-				else:
-					include( STYLESHEETPATH . '/archive-'.$wp->query_vars['taxonomy'] . '.php' );
-				endif;
+				locate_template( array(
+					'taxonomy-' . $wp->query_vars['taxonomy'] . '-' . $wp->query_vars['term'] . '.php',
+					'taxonomy-' . $wp->query_vars['taxonomy'] . '.php',
+					'taxonomy.php',
+					'archive.php',
+					'index.php'
+				), true);
 				die();
 			endif;
 		elseif( in_array( $wp->request, $taxonomies ) ):
